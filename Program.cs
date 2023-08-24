@@ -6,6 +6,7 @@
     자릿수 더하기
     약수의 합
     나머지가 1이 되는 수 찾기
+    x만큼 간격이 있는 n개의 숫자
      */
 
 
@@ -69,6 +70,7 @@
         */
 
         // 나머지가 1이 되는 수 찾기
+        /*
         public int solution(int n)
         {
             for(int i = 2; i < n / 2; i++)
@@ -78,7 +80,21 @@
             }
             return n - 1;
         }
+        */
 
+        // x만큼 간격이 있는 n개의 숫자
+        public long[] solution(int x, int n)
+        {
+            long[] answer = new long[n];
+            for(int i = 0; i < n; i++)
+            {
+                if (i == 0)
+                    answer[i] = x;
+                else
+                    answer[i] = answer[i - 1] + x;
+            }
+            return answer;
+        }
 
         static void Main(string[] args)
         {
