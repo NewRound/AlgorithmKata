@@ -5,6 +5,7 @@
     평균 구하기
     자릿수 더하기
     약수의 합
+    나머지가 1이 되는 수 찾기
      */
 
 
@@ -51,6 +52,7 @@
         */
 
         // 약수의 합
+        /*
         public int solution(int n)
         {
             int answer = 0;
@@ -64,8 +66,18 @@
 
             return answer + n;
         }
+        */
 
-
+        // 나머지가 1이 되는 수 찾기
+        public int solution(int n)
+        {
+            for(int i = 2; i < n / 2; i++)
+            {
+                if(n%i == 1)
+                    return i;
+            }
+            return n - 1;
+        }
 
 
         static void Main(string[] args)
