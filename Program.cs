@@ -7,6 +7,7 @@
     약수의 합
     나머지가 1이 되는 수 찾기
     x만큼 간격이 있는 n개의 숫자
+    자연수 뒤집어 배열로 만들기
      */
 
 
@@ -83,6 +84,7 @@
         */
 
         // x만큼 간격이 있는 n개의 숫자
+        /*
         public long[] solution(int x, int n)
         {
             long[] answer = new long[n];
@@ -95,6 +97,21 @@
             }
             return answer;
         }
+        */
+
+        // 자연수 뒤집어 배열로 만들기
+        public int[] solution(long n)
+        {
+            string number = n.ToString();
+            int[] answer = new int[number.Length];
+            for(int i = 0; i < number.Length; i++)
+            {
+                answer[i] = number[number.Length - 1 - i] - '0';
+            }
+
+            return answer;
+        }
+
 
         static void Main(string[] args)
         {
