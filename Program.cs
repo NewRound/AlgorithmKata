@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace AlgorithmKata
 {
@@ -33,6 +34,7 @@ namespace AlgorithmKata
     부족한 금액 계산하기
     문자열 다루기 기본
     행렬의 덧셈
+    직사각형 별찍기
      */
 
 
@@ -600,17 +602,85 @@ namespace AlgorithmKata
         }
         */
 
+        // 최대공약수와 최소공배수
+        public int[] solution(int n, int m)
+        {
+            // 현재 9,13,15,16 안됨  =>  공배수는 long으로 바꿔보자
+            // 아직 9, 15안됨
+            //int[] answer = new int[2];
+            //int min = 0;
+            //int max = 0;
 
+            //if(n > m)
+            //{
+            //    int temp = n;
+            //    n = m;
+            //    m = temp;
+            //}
+
+            //List<int> mList = new List<int>();
+
+            //if (m % n == 0)
+            //{
+            //    min = n;
+            //    max = m;
+            //}
+            //else
+            //{
+            //    for(int i = 1; i * i <= m; i++)
+            //    {
+            //        if (m % i == 0)
+            //        {
+            //            mList.Add(i);
+            //        }
+            //    }
+            //    mList.Add(m);
+            //    for(int i = mList.Count - 1; i >= 0; i--)
+            //    {
+            //        if (n % mList[i] == 0)
+            //        {
+            //            min = mList[i];
+            //            break;
+            //        }
+            //    }
+            //    max = (m * n) / min;
+            //}
+
+            //answer[0] = min;
+            //answer[1] = max;
+            //return answer;
+            // -------------------------------------------------------
+
+            int[] answer = new int[2];
+            int min;
+            int max;
+
+            //최대공약수 -> 유클리드 호제법 gcd(n, m) = gcd(m, n%m)
+            // https://www.youtube.com/watch?v=TxdljAFjTNw
+            min = gcd(n, m);
+            //최소공배수 -> 두수의 곱 / 최대 공약수
+            max = (n * m) / min;
+
+            answer[0] = min;
+            answer[1] = max;
+            return answer;
+        }
+        public int gcd(int n, int m)
+        {
+            //두 수 n, m 이 있을 때 어느 한 수가 0이 될 때 까지
+            //gcd(m, n%m) 의 재귀함수 반복
+            if (m == 0) 
+                return n;
+            else 
+                return gcd(m, n % m);
+        }
+        //n=6, m=4 [2,12]
 
 
         static void Main(string[] args)
         {
-            int[] answer = solution(new int[] { 5, 8, 1, 3, 4, 2, 6, 7, 9 });
-            Console.WriteLine(answer);
-            for(int i = 0; i<answer.Length; i++)
-            {
-                Console.WriteLine(answer[i]);
-            }
+            int[] answer = solution(999999, 1000000);
+            Console.WriteLine($"min : {answer[0]} , max : {answer[1]}");
         }
     }
 }
