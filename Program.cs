@@ -342,6 +342,7 @@ namespace AlgorithmKata
         */
 
         // 핸드폰 번호 가리기
+        /*
         public string solution(string phone_number)
         {
             string answer = "";
@@ -356,13 +357,36 @@ namespace AlgorithmKata
             }
             return answer;
         }
+        */
 
+        // 없는 숫자 더하기
+        public static int solution(int[] numbers)
+        {
+            int answer = 0;
+            bool find = false;
+
+            for(int i = 0; i < 10; i++)
+            {
+                find = false;
+                for (int j = 0; j < numbers.Length; j++)
+                {
+                    if (i == numbers[j])
+                    {
+                        find = true;
+                        break;
+                    }
+                }
+                if (!find)
+                    answer += i;
+            }
+            return answer;
+        }
 
 
 
         static void Main(string[] args)
         {
-            Console.WriteLine(solution(626331));
+            Console.WriteLine(solution(new int[] { 1, 2, 3, 4, 6, 7, 8, 0 }));
         }
     }
 }
