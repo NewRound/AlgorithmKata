@@ -18,7 +18,8 @@ namespace AlgorithmKata
     정수 내림차순으로 배치하기
     하샤드 수
     두 정수 사이의 합
-
+    콜라츠 추측
+    서울에서 김서방 찾기
 
      */
 
@@ -241,6 +242,7 @@ namespace AlgorithmKata
         */
 
         // 콜라츠 추측
+        /*
         public static int solution(int num)
         {
             int answer = 0;
@@ -269,6 +271,25 @@ namespace AlgorithmKata
 
             return answer;
         }
+        */
+
+        // 서울에서 김서방 찾기
+        public string solution(string[] seoul)
+        {
+            string answer = "";
+
+            for(int i = 0; i < seoul.Length; i++)
+            {
+                if (seoul[i] == "Kim")
+                {
+                    answer += $"김서방은 {i}에 있다";
+                }
+            }
+
+            return answer;
+        }
+
+
 
 
         static void Main(string[] args)
