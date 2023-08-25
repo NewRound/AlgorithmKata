@@ -23,8 +23,8 @@ namespace AlgorithmKata
     나누어 떨어지는 숫자 배열
     음양 더하기
     핸드폰 번호 가리기
-
-
+    없는 숫자 더하기
+    제일 작은 수 제거하기
 
      */
 
@@ -360,6 +360,7 @@ namespace AlgorithmKata
         */
 
         // 없는 숫자 더하기
+        /*
         public static int solution(int[] numbers)
         {
             int answer = 0;
@@ -381,12 +382,44 @@ namespace AlgorithmKata
             }
             return answer;
         }
+        */
+
+        // 제일 작은 수 제거하기
+        public static int[] solution(int[] arr)
+        {
+            if (arr.Length == 1)
+                return new int[1] { -1 };
+
+            int[] answer = new int[arr.Length - 1];
+            int minNum = arr[0];
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if(minNum > arr[i])
+                    minNum = arr[i];
+            }
+            int j = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if(arr[i] == minNum)
+                {
+                    continue;
+                }
+                answer[j] = arr[i];
+                j++;
+            }
+            return answer;
+        }
 
 
 
         static void Main(string[] args)
         {
-            Console.WriteLine(solution(new int[] { 1, 2, 3, 4, 6, 7, 8, 0 }));
+            int[] answer = solution(new int[] { 5, 8, 1, 3, 4, 2, 6, 7, 9 });
+            Console.WriteLine(answer);
+            for(int i = 0; i<answer.Length; i++)
+            {
+                Console.WriteLine(answer[i]);
+            }
         }
     }
 }
