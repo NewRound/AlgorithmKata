@@ -30,6 +30,7 @@ namespace AlgorithmKata
     내적
     약수의 개수와 덧셈
     문자열 내림차순으로 배치하기
+    부족한 금액 계산하기
      */
 
 
@@ -500,6 +501,7 @@ namespace AlgorithmKata
         */
 
         // 문자열 내림차순으로 배치하기
+        /*
         public string solution(string s)
         {
             string answer = "";
@@ -519,9 +521,29 @@ namespace AlgorithmKata
 
             return answer;
         }
+        */
+
+        // 부족한 금액 계산하기
+        public long solution(int price, int money, int count)
+        {
+            // int값의 범위를 넘어서서 오류가 떴었음 (원래 pay가 int였음.)
+            long pay = 0;
+            for(int i = 1; i <= count; i++)
+            {
+                pay += i;
+            }
+
+            pay *= (long)price;
+
+            if (pay > money)
+                return (pay - (long)money);
+            else
+                return 0;
+        }
+    }
 
 
-        static void Main(string[] args)
+    static void Main(string[] args)
         {
             int[] answer = solution(new int[] { 5, 8, 1, 3, 4, 2, 6, 7, 9 });
             Console.WriteLine(answer);
