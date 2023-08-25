@@ -1,4 +1,6 @@
-﻿namespace AlgorithmKata
+﻿using System.Collections.Generic;
+
+namespace AlgorithmKata
 {
     /* 2023.08.24
     짝수와 홀수
@@ -13,6 +15,8 @@
     /* 2023.08.25
     문자열을 정수로 바꾸기
     정수 제곱근 판별
+    정수 내림차순으로 배치하기
+
 
 
      */
@@ -122,14 +126,17 @@
         */
 
         // 문자열을 정수로 바꾸기
+        /*
         public static int solution(string s)
         {
             int answer = 0;
             answer = int.Parse(s);
             return answer;
         }
+        */
 
         // 정수 제곱근 판별
+        /*
         public static long solution(long n)
         {
             int root = (int)Math.Sqrt(n);
@@ -139,13 +146,60 @@
 
             return -1;
         }
+        */
 
+        // 정수 내림차순으로 배치하기
+        public static long solution(long n)
+        {
+            // 실패
+            /*
+            long answer = 0;
+            string num = n.ToString();
+            List<int> numList = new List<int>();
+            
+            foreach(char c in num)
+            {
+                numList.Add((c - '0'));
+            }
+            numList.Reverse();
+            for(int i = 0; i < numList.Count; i++)
+            {
+                Console.WriteLine(numList[i]);
+            }
 
+            for(int i = 0;i<numList.Count;i++)
+            {
+                Console.WriteLine((numList[i] * (long)Math.Pow(10, numList.Count - 1 - i)));
+                answer += (numList[i] * (long)Math.Pow(10, numList.Count - i));
+                
+            }
+            return answer;
+            */
+
+            long answer = 0;
+            string num = n.ToString();
+            int number = 0;
+            List<int> list = new List<int>();
+            foreach (char c in num)
+            {
+                number = c - '0';
+                list.Add(number);
+            }
+            list.Sort();
+            list.Reverse();
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                answer += (list[i] * (long)Math.Pow(10, list.Count - i));
+            }
+            answer /= 10;
+
+            return answer;
+        }
 
         static void Main(string[] args)
         {
-            Console.WriteLine(solution((long)122));
-            Console.WriteLine(solution("-6546"));
+            Console.WriteLine(solution((long)118372));
         }
     }
 }
