@@ -220,6 +220,7 @@ namespace AlgorithmKata
         */
 
         // 두 정수 사이의 합
+        /*
         public static long solution(int a, int b)
         {
             if (a == b)
@@ -237,11 +238,42 @@ namespace AlgorithmKata
             }
             return answer;
         }
+        */
+
+        // 콜라츠 추측
+        public static int solution(int num)
+        {
+            int answer = 0;
+            long number = num;
+
+            for (int i = 0; i < 500; i++)
+            {
+                if (number == 1)
+                    break;
+
+                if(number % 2 == 0)
+                {
+                    number /= 2;
+                    answer++;
+                }
+                else
+                {
+                    number *= 3;
+                    number++;
+                    answer++;
+                }
+            }
+
+            if(answer == 500)
+                answer = -1;
+
+            return answer;
+        }
 
 
         static void Main(string[] args)
         {
-            Console.WriteLine(solution(3,5));
+            Console.WriteLine(solution(626331));
         }
     }
 }
