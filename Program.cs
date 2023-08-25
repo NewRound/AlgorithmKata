@@ -413,6 +413,7 @@ namespace AlgorithmKata
         */
 
         // 가운데 글자 가져오기
+        /*
         public string solution(string s)
         {
             string answer = "";
@@ -425,6 +426,25 @@ namespace AlgorithmKata
             else
             {
                 answer += s[count];
+            }
+            return answer;
+        }
+        */
+
+        // 수박수박수박수박수박수?
+        public string solution(int n)
+        {
+            string answer = "";
+            for(int i = 0; i < n;i++)
+            {
+                if(i%2==0)
+                {
+                    answer += "수";
+                }
+                else
+                {
+                    answer += "박";
+                }
             }
             return answer;
         }
