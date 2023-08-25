@@ -29,7 +29,7 @@ namespace AlgorithmKata
     수박수박수박수박수박수?
     내적
     약수의 개수와 덧셈
-
+    문자열 내림차순으로 배치하기
      */
 
 
@@ -471,6 +471,7 @@ namespace AlgorithmKata
         */
 
         // 약수의 개수와 덧셈
+        /*
         public int solution(int left, int right)
         {
             int answer = 0;
@@ -496,7 +497,28 @@ namespace AlgorithmKata
             }
             return answer;
         }
+        */
 
+        // 문자열 내림차순으로 배치하기
+        public string solution(string s)
+        {
+            string answer = "";
+            List<int> list = new List<int>();
+            for(int i = 0; i < s.Length;i++)
+            {
+                list.Add((int)s[i]);
+            }
+
+            list.Sort();
+            list.Reverse();
+
+            for(int i = 0; i < list.Count; i++)
+            {
+                answer += (char)list[i];
+            }
+
+            return answer;
+        }
 
 
         static void Main(string[] args)
