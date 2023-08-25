@@ -25,6 +25,10 @@ namespace AlgorithmKata
     핸드폰 번호 가리기
     없는 숫자 더하기
     제일 작은 수 제거하기
+    가운데 글자 가져오기
+    수박수박수박수박수박수?
+    내적
+
 
      */
 
@@ -432,6 +436,7 @@ namespace AlgorithmKata
         */
 
         // 수박수박수박수박수박수?
+        /*
         public string solution(int n)
         {
             string answer = "";
@@ -448,6 +453,22 @@ namespace AlgorithmKata
             }
             return answer;
         }
+        */
+
+        // 내적
+        public int solution(int[] a, int[] b)
+        {
+            int answer = 0;
+
+            for (int i = 0; i < a.Length; i++)
+            {
+                answer += a[i] * b[i];
+            }
+
+            return answer;
+        }
+
+
 
 
 
