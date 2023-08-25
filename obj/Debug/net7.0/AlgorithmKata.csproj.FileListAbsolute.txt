@@ -1,0 +1,15 @@
+C:\Users\user\Desktop\Unity_nbcamp\coding\AlgorithmKata\bin\Debug\net7.0\AlgorithmKata.exe
+C:\Users\user\Desktop\Unity_nbcamp\coding\AlgorithmKata\bin\Debug\net7.0\AlgorithmKata.deps.json
+C:\Users\user\Desktop\Unity_nbcamp\coding\AlgorithmKata\bin\Debug\net7.0\AlgorithmKata.runtimeconfig.json
+C:\Users\user\Desktop\Unity_nbcamp\coding\AlgorithmKata\bin\Debug\net7.0\AlgorithmKata.dll
+C:\Users\user\Desktop\Unity_nbcamp\coding\AlgorithmKata\bin\Debug\net7.0\AlgorithmKata.pdb
+C:\Users\user\Desktop\Unity_nbcamp\coding\AlgorithmKata\obj\Debug\net7.0\AlgorithmKata.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\Unity_nbcamp\coding\AlgorithmKata\obj\Debug\net7.0\AlgorithmKata.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Desktop\Unity_nbcamp\coding\AlgorithmKata\obj\Debug\net7.0\AlgorithmKata.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\Unity_nbcamp\coding\AlgorithmKata\obj\Debug\net7.0\AlgorithmKata.AssemblyInfo.cs
+C:\Users\user\Desktop\Unity_nbcamp\coding\AlgorithmKata\obj\Debug\net7.0\AlgorithmKata.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\Unity_nbcamp\coding\AlgorithmKata\obj\Debug\net7.0\AlgorithmKata.dll
+C:\Users\user\Desktop\Unity_nbcamp\coding\AlgorithmKata\obj\Debug\net7.0\refint\AlgorithmKata.dll
+C:\Users\user\Desktop\Unity_nbcamp\coding\AlgorithmKata\obj\Debug\net7.0\AlgorithmKata.pdb
+C:\Users\user\Desktop\Unity_nbcamp\coding\AlgorithmKata\obj\Debug\net7.0\AlgorithmKata.genruntimeconfig.cache
+C:\Users\user\Desktop\Unity_nbcamp\coding\AlgorithmKata\obj\Debug\net7.0\ref\AlgorithmKata.dll

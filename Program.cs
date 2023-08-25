@@ -3,11 +3,18 @@
     /* 2023.08.24
     짝수와 홀수
     평균 구하기
-    자릿수 더하기
+    자릿수 더하기 ----- 블로그 리뷰 완료
     약수의 합
     나머지가 1이 되는 수 찾기
     x만큼 간격이 있는 n개의 숫자
     자연수 뒤집어 배열로 만들기
+     */
+
+    /* 2023.08.25
+    문자열을 정수로 바꾸기
+    정수 제곱근 판별
+
+
      */
 
 
@@ -100,6 +107,7 @@
         */
 
         // 자연수 뒤집어 배열로 만들기
+        /*
         public int[] solution(long n)
         {
             string number = n.ToString();
@@ -111,11 +119,33 @@
 
             return answer;
         }
+        */
+
+        // 문자열을 정수로 바꾸기
+        public static int solution(string s)
+        {
+            int answer = 0;
+            answer = int.Parse(s);
+            return answer;
+        }
+
+        // 정수 제곱근 판별
+        public static long solution(long n)
+        {
+            int root = (int)Math.Sqrt(n);
+
+            if (n == Math.Pow(root, 2))
+                return (long)Math.Pow(root + 1, 2);
+
+            return -1;
+        }
+
 
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Console.WriteLine(solution((long)122));
+            Console.WriteLine(solution("-6546"));
         }
     }
 }
