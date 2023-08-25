@@ -32,6 +32,7 @@ namespace AlgorithmKata
     문자열 내림차순으로 배치하기
     부족한 금액 계산하기
     문자열 다루기 기본
+    행렬의 덧셈
      */
 
 
@@ -545,6 +546,7 @@ namespace AlgorithmKata
         */
 
         // 문자열 다루기 기본
+        /*
         public bool solution(string s)
         {
             if(s.Length != 4 && s.Length != 6)
@@ -556,7 +558,23 @@ namespace AlgorithmKata
             }
             return true;
         }
+        */
 
+        // 행렬의 덧셈
+        public int[,] solution(int[,] arr1, int[,] arr2)
+        {
+            int[,] answer = new int[arr1.GetLength(0), arr1.GetLength(1)];
+
+            for(int i = 0; i < arr1.GetLength(1); i++)
+            {
+                for(int j = 0; j < arr2.GetLength(0); j++)
+                {
+                    answer[i, j] = arr1[i, j] + arr2[i, j];
+                }
+            }
+
+            return answer;
+        }
 
 
 
