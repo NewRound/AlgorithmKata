@@ -385,6 +385,7 @@ namespace AlgorithmKata
         */
 
         // 제일 작은 수 제거하기
+        /*
         public static int[] solution(int[] arr)
         {
             if (arr.Length == 1)
@@ -406,6 +407,24 @@ namespace AlgorithmKata
                 }
                 answer[j] = arr[i];
                 j++;
+            }
+            return answer;
+        }
+        */
+
+        // 가운데 글자 가져오기
+        public string solution(string s)
+        {
+            string answer = "";
+            int count = s.Length/2;
+            if(s.Length % 2 == 0)
+            {
+                answer += s[count - 1];
+                answer += s[count];
+            }
+            else
+            {
+                answer += s[count];
             }
             return answer;
         }
