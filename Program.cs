@@ -35,6 +35,8 @@ namespace AlgorithmKata
     문자열 다루기 기본
     행렬의 덧셈
     직사각형 별찍기
+    최대공약수와 최소공배수
+    3진법 뒤집기
      */
 
 
@@ -603,6 +605,7 @@ namespace AlgorithmKata
         */
 
         // 최대공약수와 최소공배수
+        /*
         public int[] solution(int n, int m)
         {
             // 현재 9,13,15,16 안됨  =>  공배수는 long으로 바꿔보자
@@ -674,7 +677,93 @@ namespace AlgorithmKata
             else 
                 return gcd(m, n % m);
         }
-        //n=6, m=4 [2,12]
+        */
+
+        // 3진법 뒤집기
+        // 실패
+        /*
+        public int solution(int n)
+        {
+            string num3 = Convert.ToString(n,3);
+            List<int> list = new List<int>();
+            for (int i = 0; i < num3.Length; i++)
+                list.Add(num3[i]);
+
+            list.Reverse();
+
+            string answerWord = "";
+            for (int i = 0;i < list.Count;i++)
+                answerWord += list[i].ToString();
+
+            int answer = Convert.ToInt32(answerWord,3);
+
+            
+            return answer;
+        }
+
+        public void BaseN(string str, int n, int N)
+        {
+            int num = n / N;
+            str = (n % N).ToString() + str;
+
+            if (num >= N)
+                BaseN(str, num, N);
+            else
+                str = num.ToString() + str;
+        }
+        */
+        public int solution(int n)
+        {
+            int answer = 0;
+            int count = 0;
+
+            string str = string.Empty;
+
+            while (true)
+            {
+                // 3의 제곱으로 나누어지는 가장 큰 수를 찾습니다.
+                double temp = Math.Pow(3, count);
+                if (temp > n)
+                {
+                    count--;
+                    break;
+                }
+
+                count++;
+            }
+
+            // 3진수로 변환
+            for (int i = count; i >= 0; i--)
+            {
+                int pow = (int)Math.Pow(3, i);
+                for (int j = 2; j >= 0; j--)
+                {
+                    if (n >= pow * j)
+                    {
+                        str += j;
+                        n -= pow * j;
+                        break;
+                    }
+
+                    if (j == 0)
+                    {
+                        str += "0";
+                    }
+                }
+            }
+
+            // 다시 10진수로 변환
+            for (int i = 0; i < str.Length; i++)
+            {
+                int pow = (int)Math.Pow(3, i);
+
+                int num = (int)Char.GetNumericValue(str[i]);
+
+                answer += num * pow;
+            }
+
+            return answer;
+        }
 
 
         static void Main(string[] args)
