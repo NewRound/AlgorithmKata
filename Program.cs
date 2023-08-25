@@ -20,6 +20,8 @@ namespace AlgorithmKata
     두 정수 사이의 합
     콜라츠 추측
     서울에서 김서방 찾기
+    나누어 떨어지는 숫자 배열
+
 
      */
 
@@ -274,6 +276,7 @@ namespace AlgorithmKata
         */
 
         // 서울에서 김서방 찾기
+        /*
         public string solution(string[] seoul)
         {
             string answer = "";
@@ -288,6 +291,33 @@ namespace AlgorithmKata
 
             return answer;
         }
+        */
+
+        // 나누어 떨어지는 숫자 배열
+        public static int[] solution(int[] arr, int divisor)
+        {
+            List<int> result = new List<int>();
+            for(int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i] % divisor == 0)
+                    result.Add(arr[i]);
+            }
+
+            if(result.Count == 0)
+                return new int[1] { -1};
+
+            result.Sort();
+
+            int[] answer = new int[result.Count];
+
+            for(int i = 0; i < result.Count; i++)
+            {
+                answer[i] = result[i];
+            }
+
+            return answer;
+        }
+
 
 
 
