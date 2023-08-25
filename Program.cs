@@ -21,7 +21,7 @@ namespace AlgorithmKata
     콜라츠 추측
     서울에서 김서방 찾기
     나누어 떨어지는 숫자 배열
-
+    음양 더하기
 
      */
 
@@ -294,6 +294,7 @@ namespace AlgorithmKata
         */
 
         // 나누어 떨어지는 숫자 배열
+        /*
         public static int[] solution(int[] arr, int divisor)
         {
             List<int> result = new List<int>();
@@ -317,7 +318,23 @@ namespace AlgorithmKata
 
             return answer;
         }
+        */
 
+        // 음양 더하기
+        public int solution(int[] absolutes, bool[] signs)
+        {
+            int answer = 0;
+
+            for (int i = 0; i < absolutes.Length; i++)
+            {
+                if (signs[i])
+                    answer += absolutes[i];
+                else
+                    answer -= absolutes[i];
+            }
+
+            return answer;
+        }
 
 
 
