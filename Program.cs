@@ -149,32 +149,32 @@ namespace AlgorithmKata
         */
 
         // 정수 내림차순으로 배치하기
+        /*
         public static long solution(long n)
         {
             // 실패
-            /*
-            long answer = 0;
-            string num = n.ToString();
-            List<int> numList = new List<int>();
+            //long answer = 0;
+            //string num = n.ToString();
+            //List<int> numList = new List<int>();
             
-            foreach(char c in num)
-            {
-                numList.Add((c - '0'));
-            }
-            numList.Reverse();
-            for(int i = 0; i < numList.Count; i++)
-            {
-                Console.WriteLine(numList[i]);
-            }
+            //foreach(char c in num)
+            //{
+            //    numList.Add((c - '0'));
+            //}
+            //numList.Reverse();
+            //for(int i = 0; i < numList.Count; i++)
+            //{
+            //    Console.WriteLine(numList[i]);
+            //}
 
-            for(int i = 0;i<numList.Count;i++)
-            {
-                Console.WriteLine((numList[i] * (long)Math.Pow(10, numList.Count - 1 - i)));
-                answer += (numList[i] * (long)Math.Pow(10, numList.Count - i));
+            //for(int i = 0;i<numList.Count;i++)
+            //{
+            //    Console.WriteLine((numList[i] * (long)Math.Pow(10, numList.Count - 1 - i)));
+            //    answer += (numList[i] * (long)Math.Pow(10, numList.Count - i));
                 
-            }
-            return answer;
-            */
+            //}
+            //return answer;
+            
 
             long answer = 0;
             string num = n.ToString();
@@ -196,10 +196,30 @@ namespace AlgorithmKata
 
             return answer;
         }
+        */
+
+        // 하샤드 수
+        public static bool solution(int x)
+        {
+            bool answer = false;
+            string num = x.ToString();
+            int number = 0;
+            foreach (int i in num)
+            {
+                number += i - '0';
+            }
+            if(x %number == 0)
+            {
+                answer = true;
+            }
+
+            return answer;
+        }
+
 
         static void Main(string[] args)
         {
-            Console.WriteLine(solution((long)118372));
+            Console.WriteLine(solution(10));
         }
     }
 }
