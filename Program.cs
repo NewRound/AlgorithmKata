@@ -22,6 +22,9 @@ namespace AlgorithmKata
     서울에서 김서방 찾기
     나누어 떨어지는 숫자 배열
     음양 더하기
+    핸드폰 번호 가리기
+
+
 
      */
 
@@ -321,6 +324,7 @@ namespace AlgorithmKata
         */
 
         // 음양 더하기
+        /*
         public int solution(int[] absolutes, bool[] signs)
         {
             int answer = 0;
@@ -333,6 +337,23 @@ namespace AlgorithmKata
                     answer -= absolutes[i];
             }
 
+            return answer;
+        }
+        */
+
+        // 핸드폰 번호 가리기
+        public string solution(string phone_number)
+        {
+            string answer = "";
+            if (phone_number.Length == 4)
+                return phone_number;
+            for(int i = 0; i < phone_number.Length; i++)
+            {
+                if(i < phone_number.Length - 4)
+                    answer += '*';
+                else
+                    answer += phone_number[i];
+            }
             return answer;
         }
 
