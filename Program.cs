@@ -16,7 +16,8 @@ namespace AlgorithmKata
     문자열을 정수로 바꾸기
     정수 제곱근 판별
     정수 내림차순으로 배치하기
-
+    하샤드 수
+    두 정수 사이의 합
 
 
      */
@@ -199,6 +200,7 @@ namespace AlgorithmKata
         */
 
         // 하샤드 수
+        /*
         public static bool solution(int x)
         {
             bool answer = false;
@@ -215,11 +217,31 @@ namespace AlgorithmKata
 
             return answer;
         }
+        */
+
+        // 두 정수 사이의 합
+        public static long solution(int a, int b)
+        {
+            if (a == b)
+                return a;
+            if (a > b)
+            {
+                int temp = b;
+                b = a;
+                a = temp;
+            }
+            long answer = 0;
+            for (int i = 0; i < b - a + 1; i++)
+            {
+                answer += (long)(a + i);
+            }
+            return answer;
+        }
 
 
         static void Main(string[] args)
         {
-            Console.WriteLine(solution(10));
+            Console.WriteLine(solution(3,5));
         }
     }
 }
