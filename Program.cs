@@ -721,7 +721,6 @@ namespace AlgorithmKata
 
             while (true)
             {
-                // 3의 제곱으로 나누어지는 가장 큰 수를 찾습니다.
                 double temp = Math.Pow(3, count);
                 if (temp > n)
                 {
@@ -731,8 +730,6 @@ namespace AlgorithmKata
 
                 count++;
             }
-
-            // 3진수로 변환
             for (int i = count; i >= 0; i--)
             {
                 int pow = (int)Math.Pow(3, i);
@@ -751,8 +748,6 @@ namespace AlgorithmKata
                     }
                 }
             }
-
-            // 다시 10진수로 변환
             for (int i = 0; i < str.Length; i++)
             {
                 int pow = (int)Math.Pow(3, i);
@@ -761,7 +756,6 @@ namespace AlgorithmKata
 
                 answer += num * pow;
             }
-
             return answer;
         }
 
