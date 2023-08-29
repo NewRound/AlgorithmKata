@@ -812,6 +812,7 @@ namespace AlgorithmKata
         */
 
         // 삼총사
+        /*
         public int solution(int[] number)
         {
             int answer = 0;
@@ -832,13 +833,56 @@ namespace AlgorithmKata
 
             return answer;
         }
+        */
 
-
+        // 크기가 작은 부분문자열
+        // 런타임 에러
+        /*
+        public static int solution(string t, string p)
+        {
+            int answer = 0;
+            int numP = int.Parse(p);
+            int numT;
+            for (int i = 0; i < t.Length - p.Length + 1;i++)
+            {
+                string numberT = t.Substring(i,p.Length);
+                numT = int.Parse(numberT);
+                if(numP >= numT)
+                    answer++;
+            }
+            return answer;
+        }
+        */
+        public static int solution(string t, string p)
+        {
+            int answer = 0;
+            bool same = true;
+            for (int i = 0; i < t.Length - p.Length + 1; i++)
+            {
+                same = true;
+                // 조건 앞자리가 작으면 무조건 작다.
+                for (int j = 0; j < p.Length; j++)
+                {
+                    if (t[i+j] < p[j])
+                    {
+                        break;
+                    }
+                    else if(t[i + j] > p[j])
+                    {
+                        same = false;
+                        break;
+                    }
+                }
+                if(same)
+                    answer++;
+            }
+            return answer;
+        }
 
         static void Main(string[] args)
         {
-            string answer = solution("  TRy HElLo  WORLD ");
-            Console.WriteLine($"{answer}1");
+            int answer = solution("500220839878", "7");
+            Console.WriteLine($"{answer}");
         }
     }
 }
