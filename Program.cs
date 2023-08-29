@@ -40,9 +40,12 @@ namespace AlgorithmKata
      */
 
 
-    /* 2023.08.25
+    /* 2023.08.28
     이상한 문자 만들기
-    
+    */
+
+    /* 2023.08.29
+    삼총사
     */
 
     internal class Program
@@ -85,7 +88,7 @@ namespace AlgorithmKata
         return answer;
     }
     */
-    
+
         // 약수의 합
         /*
     public int solution(int n)
@@ -807,6 +810,29 @@ namespace AlgorithmKata
             return answer;
         }
         */
+
+        // 삼총사
+        public int solution(int[] number)
+        {
+            int answer = 0;
+            // 3중 for문
+            for(int x = 0; x < number.Length;x++)
+            {
+                for (int y = x + 1; y < number.Length; y++)
+                {
+                    for (int z = y + 1; z < number.Length; z++)
+                    {
+                        if(number[x] + number[y] + number[z] == 0 )
+                        {
+                            answer++;
+                        }
+                    }
+                }
+            }
+
+            return answer;
+        }
+
 
 
         static void Main(string[] args)
