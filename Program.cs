@@ -46,10 +46,18 @@ namespace AlgorithmKata
 
     /* 2023.08.29
     삼총사
+    크기가 작은 부분문자열
+    */
+
+    /* 2023.08.30
+    최소직사각형
+
     */
 
     internal class Program
     {
+        // 이전 풀이
+        #region
         // 짝수와 홀수
         /*
         public static string solution(int num)
@@ -853,6 +861,7 @@ namespace AlgorithmKata
             return answer;
         }
         */
+        /*
         public static int solution(string t, string p)
         {
             int answer = 0;
@@ -878,10 +887,45 @@ namespace AlgorithmKata
             }
             return answer;
         }
+        */
+        #endregion
+
+
+        // 최소직사각형
+        public static int solution(int[,] sizes)
+        {
+            int answer = 0;
+            int[] rets = new int[2] { 0,0 };
+            // out of range => 이유 : 2차원 배열의 길이는 GetLength쓰자.
+            for(int i = 0; i < sizes.GetLength(0);i++)
+            {
+                if (sizes[i,0] > sizes[i,1])
+                {
+                    // 숫자 바꾸기 익숙하다고 넘어갔다 오류남.
+                    int temp = sizes[i,0];
+                    sizes[i,0] = sizes[i,1];
+                    sizes[i,1] = temp;
+                }
+                if (rets[0] < sizes[i,0])
+                {
+                    rets[0] = sizes[i,0];
+                }
+                if (rets[1] < sizes[i,1])
+                {
+                    rets[1] = sizes[i,1];
+                }
+                Console.WriteLine($"{rets[0]}, {rets[1]}");
+            }
+            answer = rets[0] * rets[1];
+            return answer;
+        }
+
+
+
 
         static void Main(string[] args)
         {
-            int answer = solution("500220839878", "7");
+            int answer = solution(new int[,] { { 60, 50 }, { 30, 70 }, { 60, 30 }, { 80, 40 } });
             Console.WriteLine($"{answer}");
         }
     }
