@@ -888,10 +888,9 @@ namespace AlgorithmKata
             return answer;
         }
         */
-        #endregion
-
 
         // 최소직사각형
+        /*
         public static int solution(int[,] sizes)
         {
             int answer = 0;
@@ -919,13 +918,47 @@ namespace AlgorithmKata
             answer = rets[0] * rets[1];
             return answer;
         }
+        */
+        #endregion
 
+        // 시저 암호
+        public static string solution(string s, int n)
+        {
+            string answer = "";
+            // 각각의 문자에 대해.
+            int charNum = 0;
+            for(int i = 0; i < s.Length;i++)
+            {
+                // 공백 제외
+                if (s[i] == ' ')
+                {
+                    answer += " ";
+                    continue;
+                }
+
+                // n을 더한 문자 계산
+                // else if 에 원래 charNum < 'a'를 활용 이는 대문자가 소문자 범위에 들어가는 결과를 일으킴.
+                charNum = (int)s[i] + n;
+                if (charNum > (int)'z')
+                {
+                    charNum -= 26;
+                }
+                else if((int)s[i] <= 'Z' && charNum > 'Z')
+                {
+                    charNum -= 26;
+                }
+
+                answer += (char)charNum;
+
+            }
+            return answer;
+        }
 
 
 
         static void Main(string[] args)
         {
-            int answer = solution(new int[,] { { 60, 50 }, { 30, 70 }, { 60, 30 }, { 80, 40 } });
+            string answer = solution("a B z", 4);
             Console.WriteLine($"{answer}");
         }
     }
