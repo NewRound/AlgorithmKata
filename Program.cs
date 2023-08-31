@@ -51,6 +51,12 @@ namespace AlgorithmKata
 
     /* 2023.08.30
     최소직사각형
+    시저 암호
+    */
+
+    /* 2023.08.31
+    숫자 문자열과 영단어
+
 
     */
 
@@ -919,9 +925,9 @@ namespace AlgorithmKata
             return answer;
         }
         */
-        #endregion
 
         // 시저 암호
+        /*
         public static string solution(string s, int n)
         {
             string answer = "";
@@ -953,12 +959,117 @@ namespace AlgorithmKata
             }
             return answer;
         }
+        */
+        #endregion
 
+        //숫자 문자열과 영단어
+        public static int solution(string s)
+        {
+            long answer = 0;
+            // 숫자인 경우 (1자리 숫자)
+            // 묶음 (o = 1 / t = 2, 3  /  f = 4, 5  /  s = 6, 7  / e = 8  / n = 9 / z = 0)
+            // 건너뛰는 길이 4 3 3 5 4 4 3 5 5 4
+            int count = 0;
+
+            for(int i = 0; i < s.Length; i++)
+            {
+                switch(s[i])
+                {
+                    case '0':
+                    case '1':
+                    case '2':
+                    case '3':
+                    case '4':
+                    case '5':
+                    case '6':
+                    case '7':
+                    case '8':
+                    case '9':
+                        answer += long.Parse(s[i].ToString());
+                        answer *= (long)Math.Pow(10, 1);
+                        count++;
+                        break;
+
+                    case 'o': // 1
+                        answer += 1;
+                        answer *= (long)Math.Pow(10, 1);
+                        i += 2;
+                        count++;
+                        break;
+                    case 't': // 2,3
+                        if (s[i+1] == 'w')
+                        {
+                            answer += 2;
+                            answer *= (long)Math.Pow(10, 1);
+                            i += 2;
+                        }
+                        else
+                        {
+                            answer += 3;
+                            answer *= (long)Math.Pow(10, 1);
+                            i += 4;
+                        }
+                        count++;
+                        break;
+                    case 'f': // 4,5
+                        if (s[i + 1] == 'o')
+                        {
+                            answer += 4;
+                            answer *= (long)Math.Pow(10, 1);
+                            i += 3;
+                        }
+                        else
+                        {
+                            answer += 5;
+                            answer *= (long)Math.Pow(10, 1);
+                            i += 3;
+                        }
+                        count++;
+                        break;
+                    case 's': // 6,7
+                        if (s[i + 1] == 'i')
+                        {
+                            answer += 6;
+                            answer *= (long)Math.Pow(10, 1);
+                            i += 2;
+                        }
+                        else
+                        {
+                            answer += 7;
+                            answer *= (long)Math.Pow(10, 1);
+                            i += 4;
+                        }
+                        count++;
+                        break;
+                    case 'e': // 8
+                        answer += 8;
+                        answer *= (long)Math.Pow(10, 1);
+                        i += 4;
+                        count++;
+                        break;
+                    case 'n': // 9
+                        answer += 9;
+                        answer *= (long)Math.Pow(10, 1);
+                        i += 3;
+                        count++;
+                        break;
+                    case 'z': // 0
+                        answer += 0;
+                        answer *= (long)Math.Pow(10, 1);
+                        i += 3;
+                        count++;
+                        break;
+                }
+                Console.WriteLine("{0} :  {1}",answer, count);
+            }
+
+            return (int)(answer / 10);
+        }
 
 
         static void Main(string[] args)
         {
-            string answer = solution("a B z", 4);
+            int answer = solution("2three45sixseven");
             Console.WriteLine($"{answer}");
         }
     }
