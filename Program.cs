@@ -56,8 +56,10 @@ namespace AlgorithmKata
 
     /* 2023.08.31
     숫자 문자열과 영단어
+    */
 
-
+    /* 2023.09.04
+    문자열 내 마음대로 정렬하기
     */
 
     internal class Program
@@ -960,9 +962,9 @@ namespace AlgorithmKata
             return answer;
         }
         */
-        #endregion
 
         //숫자 문자열과 영단어
+        /*
         public static int solution(string s)
         {
             long answer = 0;
@@ -971,9 +973,9 @@ namespace AlgorithmKata
             // 건너뛰는 길이 4 3 3 5 4 4 3 5 5 4
             int count = 0;
 
-            for(int i = 0; i < s.Length; i++)
+            for (int i = 0; i < s.Length; i++)
             {
-                switch(s[i])
+                switch (s[i])
                 {
                     case '0':
                     case '1':
@@ -997,7 +999,7 @@ namespace AlgorithmKata
                         count++;
                         break;
                     case 't': // 2,3
-                        if (s[i+1] == 'w')
+                        if (s[i + 1] == 'w')
                         {
                             answer += 2;
                             answer *= (long)Math.Pow(10, 1);
@@ -1060,17 +1062,72 @@ namespace AlgorithmKata
                         count++;
                         break;
                 }
-                Console.WriteLine("{0} :  {1}",answer, count);
+                Console.WriteLine("{0} :  {1}", answer, count);
             }
 
             return (int)(answer / 10);
         }
+        */
+        #endregion
 
+        // 문자열 내 마음대로 정렬하기
+        public static string[] solution(string[] strings, int n)
+        {
+            string[] answer = new string[strings.Length];
+            Dictionary<char, List<string>> stringDict = new Dictionary<char, List<string>>();
+
+            for(int i = 0; i < 26; i++)
+            {
+                stringDict[(char)(97 + i)] =null;
+            }
+
+
+            for(int i = 0; i < strings.Length; i++)
+            {
+                char key = strings[i][n];
+                if (stringDict.TryGetValue(key, out List<string> value) && value != null)
+                {
+                    Console.WriteLine($"strings[i] : {strings[i]},  key : {key}");
+                    value.Add(strings[i]);
+                    value.Sort();
+                    stringDict[key] = value;
+                }
+                else
+                {
+                    Console.WriteLine($"strings[i] : {strings[i]},  key : {key}");
+                    value = new List<string>();
+                    value.Add(strings[i]);
+                    value.Sort();
+                    stringDict[key] = value;
+                }
+            }
+
+            for(int i = 0; i < 26; i++)
+            {
+                if (stringDict[(char)(97 + i)] != null)
+                    Console.WriteLine($"{stringDict[(char)(97 + i)].Count} , {(char)(97 + i)}");
+            }
+
+            int count = 0;
+            for(int i = 0; i < 26; i++)
+            {
+                if (stringDict.TryGetValue((char)(97 + i), out List<string> values) && values != null)
+                {
+                    for(int j = 0; j < values.Count; j++)
+                    {
+                        Console.WriteLine($"{(char)(97 + i)} : {values.Count},  {i},  {j}");
+                        answer[count] = values[j];
+                        count++;
+                    }
+                }
+            }
+            return answer;
+        }
 
         static void Main(string[] args)
         {
-            int answer = solution("2three45sixseven");
-            Console.WriteLine($"{answer}");
+            string[] answer = solution(new string[] { "sun", "bed", "car" }, 1);
+            Console.WriteLine($"{answer[0]}, {answer[1]}, {answer[2]}");
         }
     }
 }
