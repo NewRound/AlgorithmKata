@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AlgorithmKata
 {
@@ -60,6 +61,11 @@ namespace AlgorithmKata
 
     /* 2023.09.04
     문자열 내 마음대로 정렬하기
+    */
+
+    /* 2023.09.06
+     K번째수
+
     */
 
     internal class Program
@@ -1068,6 +1074,35 @@ namespace AlgorithmKata
             return (int)(answer / 10);
         }
         */
+
+        // K번째수
+        /*
+        public static int[] solution(int[] array, int[,] commands)
+        {
+            int[] answer = new int[commands.GetLength(0)];
+
+
+            // commands의 수만큼 반복
+            for (int i = 0; i < commands.GetLength(0); i++)
+            {
+                // 자르기
+                int[] arr = new int[commands[i, 1] - commands[i, 0] + 1];
+                for (int j = commands[i, 0] - 1; j < commands[i, 1]; j++)
+                {
+                    arr[j - (commands[i, 0] - 1)] = array[j];
+                }
+                // 정렬
+                Array.Sort(arr);
+
+                // 값 대입
+                answer[i] = arr[commands[i, 2] - 1];
+            }
+
+            return answer;
+        }
+        */
+
+
         #endregion
 
         // 문자열 내 마음대로 정렬하기
@@ -1127,37 +1162,46 @@ namespace AlgorithmKata
         }
         */
 
-
-        // K번째수
-        public static int[] solution(int[] array, int[,] commands)
+        // 두 개 뽑아서 더하기
+        public static int[] solution(int[] numbers)
         {
-            int[] answer = new int[commands.GetLength(0)];
+            
+            List<int> answers = new List<int>();
+            //answers.Add(0);
 
-
-            // commands의 수만큼 반복
-            for(int i = 0; i < commands.GetLength(0); i++)
+            // 모든 경우의 수
+            for (int i = 0; i < numbers.Length - 1;i++)
             {
-                // 자르기
-                int[] arr = new int[commands[i, 1] - commands[i, 0] + 1];
-                for(int j = commands[i, 0] - 1; j < commands[i, 1]; j++)
+                for(int j = i + 1; j < numbers.Length;j++)
                 {
-                    arr[j - (commands[i, 0] - 1)] = array[j];
+                    if (!answers.Contains(numbers[i] + numbers[j]))
+                    {
+                        Console.WriteLine($"{numbers[i]} + {numbers[j]} = {numbers[i] + numbers[j]}");
+                        answers.Add(numbers[i] + numbers[j]);
+                    }
+                    else
+                        continue;
                 }
-                // 정렬
-                Array.Sort(arr);
+            }
 
-                // 값 대입
-                answer[i] = arr[commands[i,2] - 1];
+            //answers.Remove(0);
+            answers.Sort();
+            int[] answer = new int[answers.Count];
+            int count = 0;
+            foreach(int i in answers)
+            {
+                answer[count] = i;
+                count++;
             }
 
             return answer;
-        }
 
+        }
 
         static void Main(string[] args)
         {
-            int[] answer = solution(new int[] { 1, 5, 2, 6, 3, 7, 4 }, new int[,] { { 2, 5, 3 },{ 4, 4, 1 },{1, 7, 3} });
-            Console.WriteLine($"{answer[0]}, {answer[1]}, {answer[2]}");
+            int[] answer = solution(new int[] { 1, 2, 6, 10, 13, 20 } );
+            //Console.WriteLine($"{answer[0]}, {answer[1]}, {answer[2]}, {answer[3]}, {answer[4]}");
         }
     }
 }
