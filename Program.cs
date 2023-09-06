@@ -1071,6 +1071,8 @@ namespace AlgorithmKata
         #endregion
 
         // 문자열 내 마음대로 정렬하기
+        // 아직 안됨
+        /*
         public static string[] solution(string[] strings, int n)
         {
             string[] answer = new string[strings.Length];
@@ -1123,10 +1125,38 @@ namespace AlgorithmKata
             }
             return answer;
         }
+        */
+
+
+        // K번째수
+        public static int[] solution(int[] array, int[,] commands)
+        {
+            int[] answer = new int[commands.GetLength(0)];
+
+
+            // commands의 수만큼 반복
+            for(int i = 0; i < commands.GetLength(0); i++)
+            {
+                // 자르기
+                int[] arr = new int[commands[i, 1] - commands[i, 0] + 1];
+                for(int j = commands[i, 0] - 1; j < commands[i, 1]; j++)
+                {
+                    arr[j - (commands[i, 0] - 1)] = array[j];
+                }
+                // 정렬
+                Array.Sort(arr);
+
+                // 값 대입
+                answer[i] = arr[commands[i,2] - 1];
+            }
+
+            return answer;
+        }
+
 
         static void Main(string[] args)
         {
-            string[] answer = solution(new string[] { "sun", "bed", "car" }, 1);
+            int[] answer = solution(new int[] { 1, 5, 2, 6, 3, 7, 4 }, new int[,] { { 2, 5, 3 },{ 4, 4, 1 },{1, 7, 3} });
             Console.WriteLine($"{answer[0]}, {answer[1]}, {answer[2]}");
         }
     }
