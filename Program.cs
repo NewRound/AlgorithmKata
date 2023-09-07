@@ -65,8 +65,14 @@ namespace AlgorithmKata
 
     /* 2023.09.06
      K번째수
+    두 개 뽑아서 더하기
+    */
+
+    /* 2023.09.07
+    가장 가까운 같은 글자
 
     */
+
 
     internal class Program
     {
@@ -1102,6 +1108,43 @@ namespace AlgorithmKata
         }
         */
 
+        // 두 개 뽑아서 더하기
+        /*
+        public static int[] solution(int[] numbers)
+        {
+
+            List<int> answers = new List<int>();
+            //answers.Add(0);
+
+            // 모든 경우의 수
+            for (int i = 0; i < numbers.Length - 1; i++)
+            {
+                for (int j = i + 1; j < numbers.Length; j++)
+                {
+                    if (!answers.Contains(numbers[i] + numbers[j]))
+                    {
+                        Console.WriteLine($"{numbers[i]} + {numbers[j]} = {numbers[i] + numbers[j]}");
+                        answers.Add(numbers[i] + numbers[j]);
+                    }
+                    else
+                        continue;
+                }
+            }
+
+            //answers.Remove(0);
+            answers.Sort();
+            int[] answer = new int[answers.Count];
+            int count = 0;
+            foreach (int i in answers)
+            {
+                answer[count] = i;
+                count++;
+            }
+
+            return answer;
+
+        }
+        */
 
         #endregion
 
@@ -1162,46 +1205,39 @@ namespace AlgorithmKata
         }
         */
 
-        // 두 개 뽑아서 더하기
-        public static int[] solution(int[] numbers)
+        // 가장 가까운 같은 글자
+        public static int[] solution(string s)
         {
-            
-            List<int> answers = new List<int>();
-            //answers.Add(0);
+            int[] answer = new int[s.Length];
+            Dictionary<char, int> numIndex = new Dictionary<char, int>();
 
-            // 모든 경우의 수
-            for (int i = 0; i < numbers.Length - 1;i++)
+            for(int i = 0; i < s.Length; i++)
             {
-                for(int j = i + 1; j < numbers.Length;j++)
+                char c = s[i];
+
+                if(numIndex.ContainsKey(c))
                 {
-                    if (!answers.Contains(numbers[i] + numbers[j]))
-                    {
-                        Console.WriteLine($"{numbers[i]} + {numbers[j]} = {numbers[i] + numbers[j]}");
-                        answers.Add(numbers[i] + numbers[j]);
-                    }
-                    else
-                        continue;
+                    answer[i] = i - numIndex[c];
+                    numIndex[c] = i;
+                }
+                else
+                {
+                    answer[i] = -1;
+                    numIndex[c] = i;
                 }
             }
 
-            //answers.Remove(0);
-            answers.Sort();
-            int[] answer = new int[answers.Count];
-            int count = 0;
-            foreach(int i in answers)
-            {
-                answer[count] = i;
-                count++;
-            }
 
             return answer;
-
         }
+
+
+
 
         static void Main(string[] args)
         {
-            int[] answer = solution(new int[] { 1, 2, 6, 10, 13, 20 } );
-            //Console.WriteLine($"{answer[0]}, {answer[1]}, {answer[2]}, {answer[3]}, {answer[4]}");
+            int[] answer = solution("banana");
+            Console.WriteLine($"{answer[0]}, {answer[1]}, {answer[2]}, {answer[3]}, {answer[4]}");
         }
     }
 }
