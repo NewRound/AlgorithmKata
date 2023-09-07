@@ -1146,6 +1146,34 @@ namespace AlgorithmKata
         }
         */
 
+        // 가장 가까운 같은 글자
+        /*
+        public static int[] solution(string s)
+        {
+            int[] answer = new int[s.Length];
+            Dictionary<char, int> numIndex = new Dictionary<char, int>();
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                char c = s[i];
+
+                if (numIndex.ContainsKey(c))
+                {
+                    answer[i] = i - numIndex[c];
+                    numIndex[c] = i;
+                }
+                else
+                {
+                    answer[i] = -1;
+                    numIndex[c] = i;
+                }
+            }
+            return answer;
+        }
+        */
+
+
+
         #endregion
 
         // 문자열 내 마음대로 정렬하기
@@ -1205,39 +1233,31 @@ namespace AlgorithmKata
         }
         */
 
-        // 가장 가까운 같은 글자
-        public static int[] solution(string s)
+        // 푸드 파이트 대회
+        public static string solution(int[] food)
         {
-            int[] answer = new int[s.Length];
-            Dictionary<char, int> numIndex = new Dictionary<char, int>();
-
-            for(int i = 0; i < s.Length; i++)
+            string answer = "0";
+            for(int i = food.Length - 1; i > 0; i--)
             {
-                char c = s[i];
-
-                if(numIndex.ContainsKey(c))
+                if (food[i] > 1)
                 {
-                    answer[i] = i - numIndex[c];
-                    numIndex[c] = i;
-                }
-                else
-                {
-                    answer[i] = -1;
-                    numIndex[c] = i;
+                    int num = food[i] / 2;
+                    string c = i.ToString();
+                    for(int j = 0; j < num; j++)
+                    {
+                        answer = c + answer + c;
+                    }
                 }
             }
-
-
             return answer;
         }
 
 
 
-
         static void Main(string[] args)
         {
-            int[] answer = solution("banana");
-            Console.WriteLine($"{answer[0]}, {answer[1]}, {answer[2]}, {answer[3]}, {answer[4]}");
+            string answer = solution(new int[] { 1, 3, 4, 6 });
+            Console.WriteLine($"{answer}");
         }
     }
 }
