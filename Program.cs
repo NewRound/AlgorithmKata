@@ -75,7 +75,7 @@ namespace AlgorithmKata
 
     /* 2023.09.08
     콜라 문제
-
+    명예의 전당 (1)
 
     */
 
@@ -1199,8 +1199,23 @@ namespace AlgorithmKata
         }
         */
 
+        // 콜라 문제
+        /*
+        public static int solution(int a, int b, int n)
+        {
+            int answer = 0;
+            int empty = n;
 
-
+            while (empty >= a)
+            {
+                Console.WriteLine(empty);
+                int getCola = (empty / a) * b;
+                answer += getCola;
+                empty = getCola + (empty % a);
+            }
+            return answer;
+        }
+        */
 
         #endregion
 
@@ -1261,27 +1276,51 @@ namespace AlgorithmKata
         }
         */
 
-        // 콜라 문제
-        public static int solution(int a, int b, int n)
+        // 명예의 전당 (1)
+        public static int[] solution(int k, int[] score)
         {
-            int answer = 0;
-            int empty = n;
+            int[] answer = new int[score.Length];
 
-            while(empty >= a)
+            // 명예의 전당
+            List<int> honor = new List<int>();
+
+            // 가수들의 점수를 전부 계산.
+            for (int i = 0; i < score.Length; i++)
             {
-                Console.WriteLine(empty);
-                int getCola = (empty / a) * b;
-                answer += getCola;
-                empty = getCola + (empty % a);
+                // 명예의 전당이 다 안채워졌을 때
+                if(i < k)
+                {
+                    Console.WriteLine($"{score[i]}");
+                    honor.Add(score[i]);
+                }
+                else
+                {
+                    if (score[i] > honor[0])
+                    {
+                        honor.Remove(honor[0]);
+                        Console.WriteLine($"{score[i]}");
+                        honor.Add(score[i]);
+                    }
+                }
+                honor.Sort();
+                Console.WriteLine($"{honor[0]}");
+                answer[i] = honor[0];
             }
+
             return answer;
         }
 
 
+
+
         static void Main(string[] args)
         {
-            int answer = solution(3,1,20);
-            Console.WriteLine($"{answer}");
+            int[] answer = solution(3,new int[] { 10, 100, 20, 150, 1, 100, 200 });
+            for(int i = 0; i < answer.Length; i++)
+            {
+                Console.WriteLine($"{answer[i]}");
+            }
+            
         }
     }
 }
