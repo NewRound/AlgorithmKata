@@ -64,12 +64,18 @@ namespace AlgorithmKata
     */
 
     /* 2023.09.06
-     K번째수
+    K번째수
     두 개 뽑아서 더하기
     */
 
     /* 2023.09.07
     가장 가까운 같은 글자
+    푸드 파이트 대회
+    */
+
+    /* 2023.09.08
+    콜라 문제
+
 
     */
 
@@ -1172,6 +1178,28 @@ namespace AlgorithmKata
         }
         */
 
+        // 푸드 파이트 대회
+        /*
+        public static string solution(int[] food)
+        {
+            string answer = "0";
+            for (int i = food.Length - 1; i > 0; i--)
+            {
+                if (food[i] > 1)
+                {
+                    int num = food[i] / 2;
+                    string c = i.ToString();
+                    for (int j = 0; j < num; j++)
+                    {
+                        answer = c + answer + c;
+                    }
+                }
+            }
+            return answer;
+        }
+        */
+
+
 
 
         #endregion
@@ -1233,30 +1261,26 @@ namespace AlgorithmKata
         }
         */
 
-        // 푸드 파이트 대회
-        public static string solution(int[] food)
+        // 콜라 문제
+        public static int solution(int a, int b, int n)
         {
-            string answer = "0";
-            for(int i = food.Length - 1; i > 0; i--)
+            int answer = 0;
+            int empty = n;
+
+            while(empty >= a)
             {
-                if (food[i] > 1)
-                {
-                    int num = food[i] / 2;
-                    string c = i.ToString();
-                    for(int j = 0; j < num; j++)
-                    {
-                        answer = c + answer + c;
-                    }
-                }
+                Console.WriteLine(empty);
+                int getCola = (empty / a) * b;
+                answer += getCola;
+                empty = getCola + (empty % a);
             }
             return answer;
         }
 
 
-
         static void Main(string[] args)
         {
-            string answer = solution(new int[] { 1, 3, 4, 6 });
+            int answer = solution(3,1,20);
             Console.WriteLine($"{answer}");
         }
     }
