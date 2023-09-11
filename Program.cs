@@ -79,6 +79,11 @@ namespace AlgorithmKata
 
     */
 
+    /*2023.09.11
+    2016년
+
+    */
+
 
     internal class Program
     {
@@ -1217,6 +1222,43 @@ namespace AlgorithmKata
         }
         */
 
+        // 명예의 전당 (1)
+        /*
+        public static int[] solution(int k, int[] score)
+        {
+            int[] answer = new int[score.Length];
+
+            // 명예의 전당
+            List<int> honor = new List<int>();
+
+            // 가수들의 점수를 전부 계산.
+            for (int i = 0; i < score.Length; i++)
+            {
+                // 명예의 전당이 다 안채워졌을 때
+                if (i < k)
+                {
+                    Console.WriteLine($"{score[i]}");
+                    honor.Add(score[i]);
+                }
+                else
+                {
+                    if (score[i] > honor[0])
+                    {
+                        honor.Remove(honor[0]);
+                        Console.WriteLine($"{score[i]}");
+                        honor.Add(score[i]);
+                    }
+                }
+                honor.Sort();
+                Console.WriteLine($"{honor[0]}");
+                answer[i] = honor[0];
+            }
+
+            return answer;
+        }
+        */
+
+
         #endregion
 
         // 문자열 내 마음대로 정렬하기
@@ -1276,51 +1318,54 @@ namespace AlgorithmKata
         }
         */
 
-        // 명예의 전당 (1)
-        public static int[] solution(int k, int[] score)
+        // 2016년
+        public static string solution(int a, int b)
         {
-            int[] answer = new int[score.Length];
+            int[] month = new int[11] {31,29,31,30,31,30,31,31,30,31,30 };
+            // 0 = 금요일
+            int day = b - 1;
 
-            // 명예의 전당
-            List<int> honor = new List<int>();
-
-            // 가수들의 점수를 전부 계산.
-            for (int i = 0; i < score.Length; i++)
-            {
-                // 명예의 전당이 다 안채워졌을 때
-                if(i < k)
+            if (a != 1)
+            { 
+                for(int i = 0; i < a - 1; i++)
                 {
-                    Console.WriteLine($"{score[i]}");
-                    honor.Add(score[i]);
+                    day += month[i];
                 }
-                else
-                {
-                    if (score[i] > honor[0])
-                    {
-                        honor.Remove(honor[0]);
-                        Console.WriteLine($"{score[i]}");
-                        honor.Add(score[i]);
-                    }
-                }
-                honor.Sort();
-                Console.WriteLine($"{honor[0]}");
-                answer[i] = honor[0];
             }
-
-            return answer;
+            // SUN,MON,TUE,WED,THU,FRI,SAT
+            day = day % 7;
+            switch(day)
+            {
+                case 0:
+                    return "FRI";
+                case 1:
+                    return "SAT";
+                case 2:
+                    return "SUN"; 
+                case 3:
+                    return "MON"; 
+                case 4:
+                    return "TUE"; 
+                case 5:
+                    return "WED"; 
+                case 6:
+                    return "THU"; 
+            }
+            return "asd";
         }
-
 
 
 
         static void Main(string[] args)
         {
-            int[] answer = solution(3,new int[] { 10, 100, 20, 150, 1, 100, 200 });
-            for(int i = 0; i < answer.Length; i++)
-            {
-                Console.WriteLine($"{answer[i]}");
-            }
-            
+            string answer = solution(5,24);
+            Console.WriteLine($"{answer}");
+
+            //for(int i = 0; i < answer.Length; i++)
+            //{
+            //    Console.WriteLine($"{answer[i]}");
+            //}
+
         }
     }
 }
