@@ -84,6 +84,9 @@ namespace AlgorithmKata
 
     */
 
+    /* 2023.09.12
+    카드 뭉치
+     */
 
     internal class Program
     {
