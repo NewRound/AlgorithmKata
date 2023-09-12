@@ -1258,6 +1258,46 @@ namespace AlgorithmKata
         }
         */
 
+        // 2016년
+        /*
+        public static string solution(int a, int b)
+        {
+            int[] month = new int[11] { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30 };
+            // 0 = 금요일
+            int day = b - 1;
+
+            if (a != 1)
+            {
+                for (int i = 0; i < a - 1; i++)
+                {
+                    day += month[i];
+                }
+            }
+            // SUN,MON,TUE,WED,THU,FRI,SAT
+            day = day % 7;
+            switch (day)
+            {
+                case 0:
+                    return "FRI";
+                case 1:
+                    return "SAT";
+                case 2:
+                    return "SUN";
+                case 3:
+                    return "MON";
+                case 4:
+                    return "TUE";
+                case 5:
+                    return "WED";
+                case 6:
+                    return "THU";
+            }
+            return "asd";
+        }
+        */
+
+
+
 
         #endregion
 
@@ -1318,40 +1358,35 @@ namespace AlgorithmKata
         }
         */
 
-        // 2016년
-        public static string solution(int a, int b)
+        // 카드 뭉치
+        public string solution(string[] cards1, string[] cards2, string[] goal)
         {
-            int[] month = new int[11] {31,29,31,30,31,30,31,31,30,31,30 };
-            // 0 = 금요일
-            int day = b - 1;
+            // 중복되는 글자가 있을 수도 있다.
+            int c1 = 0;
+            int c2 = 0;
 
-            if (a != 1)
-            { 
-                for(int i = 0; i < a - 1; i++)
-                {
-                    day += month[i];
-                }
-            }
-            // SUN,MON,TUE,WED,THU,FRI,SAT
-            day = day % 7;
-            switch(day)
+            for(int i = 0; i< goal.Length; i++)
             {
-                case 0:
-                    return "FRI";
-                case 1:
-                    return "SAT";
-                case 2:
-                    return "SUN"; 
-                case 3:
-                    return "MON"; 
-                case 4:
-                    return "TUE"; 
-                case 5:
-                    return "WED"; 
-                case 6:
-                    return "THU"; 
+                if (c1 < cards1.Length)
+                {
+                    if (goal[i] == cards1[c1])
+                    {
+                        c1++;
+                        continue;
+                    }
+                }
+                if(c2 < cards2.Length)
+                {
+                    if (goal[i] == cards2[c2])
+                    {
+                        c2++;
+                        continue;
+                    }
+                }
+                return "No";
             }
-            return "asd";
+
+            return "Yes";
         }
 
 
