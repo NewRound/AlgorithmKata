@@ -88,6 +88,10 @@ namespace AlgorithmKata
     카드 뭉치
      */
 
+    /* 2023.09.13
+    과일 장수
+     */
+
     internal class Program
     {
         // 이전 풀이
@@ -1299,8 +1303,38 @@ namespace AlgorithmKata
         }
         */
 
+        // 카드 뭉치
+        /*
+        public string solution(string[] cards1, string[] cards2, string[] goal)
+        {
+            // 중복되는 글자가 있을 수도 있다.
+            int c1 = 0;
+            int c2 = 0;
 
+            for (int i = 0; i < goal.Length; i++)
+            {
+                if (c1 < cards1.Length)
+                {
+                    if (goal[i] == cards1[c1])
+                    {
+                        c1++;
+                        continue;
+                    }
+                }
+                if (c2 < cards2.Length)
+                {
+                    if (goal[i] == cards2[c2])
+                    {
+                        c2++;
+                        continue;
+                    }
+                }
+                return "No";
+            }
 
+            return "Yes";
+        }
+        */
 
         #endregion
 
@@ -1361,36 +1395,31 @@ namespace AlgorithmKata
         }
         */
 
-        // 카드 뭉치
-        public string solution(string[] cards1, string[] cards2, string[] goal)
-        {
-            // 중복되는 글자가 있을 수도 있다.
-            int c1 = 0;
-            int c2 = 0;
 
-            for(int i = 0; i< goal.Length; i++)
+        // 과일 장수
+        public int solution(int k, int m, int[] score)
+        {
+            int answer = 0;
+            List<int> scores = new List<int>();
+            for(int i = 0; i < score.Length; i++)
             {
-                if (c1 < cards1.Length)
+                scores.Add(score[i]);
+            }
+            scores.Sort();
+            scores.Reverse();
+
+            for(int i = 0; i < scores.Count; i++)
+            {
+                 if( i % m == m - 1)
                 {
-                    if (goal[i] == cards1[c1])
-                    {
-                        c1++;
-                        continue;
-                    }
+                    answer += m * scores[i];
                 }
-                if(c2 < cards2.Length)
-                {
-                    if (goal[i] == cards2[c2])
-                    {
-                        c2++;
-                        continue;
-                    }
-                }
-                return "No";
             }
 
-            return "Yes";
+            return answer;
         }
+
+
 
 
 
