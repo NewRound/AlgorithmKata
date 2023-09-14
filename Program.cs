@@ -92,6 +92,11 @@ namespace AlgorithmKata
     과일 장수
      */
 
+    /* 2023.09.14
+    모의고사
+
+     */
+
     internal class Program
     {
         // 이전 풀이
@@ -1336,6 +1341,33 @@ namespace AlgorithmKata
         }
         */
 
+        // 과일 장수
+        /*
+        public int solution(int k, int m, int[] score)
+        {
+            int answer = 0;
+            List<int> scores = new List<int>();
+            for (int i = 0; i < score.Length; i++)
+            {
+                scores.Add(score[i]);
+            }
+            scores.Sort();
+            scores.Reverse();
+
+            for (int i = 0; i < scores.Count; i++)
+            {
+                if (i % m == m - 1)
+                {
+                    answer += m * scores[i];
+                }
+            }
+
+            return answer;
+        }
+        */
+
+
+
         #endregion
 
         // 문자열 내 마음대로 정렬하기
@@ -1396,25 +1428,55 @@ namespace AlgorithmKata
         */
 
 
-        // 과일 장수
-        public int solution(int k, int m, int[] score)
+        // 모의고사
+        public int[] solution(int[] answers)
         {
-            int answer = 0;
-            List<int> scores = new List<int>();
-            for(int i = 0; i < score.Length; i++)
-            {
-                scores.Add(score[i]);
-            }
-            scores.Sort();
-            scores.Reverse();
+            int[] people1 = new int[5] { 1,2,3,4,5 };
+            int[] people2 = new int[8] { 2,1,2,3,2,4,2,5 };
+            int[] people3 = new int[10] { 3,3,1,1,2,2,4,4,5,5 };
 
-            for(int i = 0; i < scores.Count; i++)
+            int p1 = 0;
+            int p2 = 0;
+            int p3 = 0;
+
+            for(int i = 0; i < answers.Length; i++)
             {
-                 if( i % m == m - 1)
-                {
-                    answer += m * scores[i];
-                }
+                if (people1[i % 5] == answers[i])
+                    p1++;
+                if (people2[i % 8] == answers[i])
+                    p2++;
+                if (people3[i % 10] == answers[i])
+                    p3++;
             }
+
+            int maxInt = p1;
+            if(p2 > maxInt)
+            {
+                maxInt = p2;
+            }
+            if(p3 > maxInt)
+            {
+                maxInt = p3;
+            }
+
+            int length = 0;
+            if (p1 == maxInt)
+                length++;
+            if (p2 == maxInt)
+                length++;
+            if (p3 == maxInt)
+                length++;
+
+            int[] answer = new int[length];
+
+            int index = 0;
+            if (p1 == maxInt)
+                answer[index++] = 1;
+            if (p2 == maxInt)
+                answer[index++] = 2;
+            if (p3 == maxInt)
+                answer[index++] = 3;
+
 
             return answer;
         }
