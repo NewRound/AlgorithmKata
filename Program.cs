@@ -94,7 +94,10 @@ namespace AlgorithmKata
 
     /* 2023.09.14
     모의고사
+     */
 
+    /* 2023.09.15
+    모의고사
      */
 
     internal class Program
@@ -1366,6 +1369,63 @@ namespace AlgorithmKata
         }
         */
 
+        // 모의고사
+        /*
+        public int[] solution(int[] answers)
+        {
+            int[] people1 = new int[5] { 1, 2, 3, 4, 5 };
+            int[] people2 = new int[8] { 2, 1, 2, 3, 2, 4, 2, 5 };
+            int[] people3 = new int[10] { 3, 3, 1, 1, 2, 2, 4, 4, 5, 5 };
+
+            int p1 = 0;
+            int p2 = 0;
+            int p3 = 0;
+
+            for (int i = 0; i < answers.Length; i++)
+            {
+                if (people1[i % 5] == answers[i])
+                    p1++;
+                if (people2[i % 8] == answers[i])
+                    p2++;
+                if (people3[i % 10] == answers[i])
+                    p3++;
+            }
+
+            int maxInt = p1;
+            if (p2 > maxInt)
+            {
+                maxInt = p2;
+            }
+            if (p3 > maxInt)
+            {
+                maxInt = p3;
+            }
+
+            int length = 0;
+            if (p1 == maxInt)
+                length++;
+            if (p2 == maxInt)
+                length++;
+            if (p3 == maxInt)
+                length++;
+
+            int[] answer = new int[length];
+
+            int index = 0;
+            if (p1 == maxInt)
+                answer[index++] = 1;
+            if (p2 == maxInt)
+                answer[index++] = 2;
+            if (p3 == maxInt)
+                answer[index++] = 3;
+
+
+            return answer;
+        }
+        */
+
+
+
 
 
         #endregion
@@ -1427,57 +1487,62 @@ namespace AlgorithmKata
         }
         */
 
-
-        // 모의고사
-        public int[] solution(int[] answers)
+        // 소수 만들기
+        public int solution(int[] nums)
         {
-            int[] people1 = new int[5] { 1,2,3,4,5 };
-            int[] people2 = new int[8] { 2,1,2,3,2,4,2,5 };
-            int[] people3 = new int[10] { 3,3,1,1,2,2,4,4,5,5 };
+            int answer = 0;
 
-            int p1 = 0;
-            int p2 = 0;
-            int p3 = 0;
+            // 배열에서 3개를 더한 수.
+            // 약수를 구함.
+            // if 소수라면?
+            // dic에 수를 키로하고 bool값으로 true
+            
+            Dictionary<int, bool> numDict = new Dictionary<int, bool>();
+            int num = 0;
 
-            for(int i = 0; i < answers.Length; i++)
+            for(int i = 0; i < nums.Length; i++)
             {
-                if (people1[i % 5] == answers[i])
-                    p1++;
-                if (people2[i % 8] == answers[i])
-                    p2++;
-                if (people3[i % 10] == answers[i])
-                    p3++;
+                for (int j = i + 1; j < nums.Length; j++)
+                {
+                    for (int k = j + 1; k < nums.Length; k++)
+                    {
+                        num = nums[i] + nums[j] + nums[k];
+
+                        if(numDict.ContainsKey(num))
+                        {
+                            if (numDict[num])
+                            {
+                                answer++;
+                            }
+                        }
+                        else
+                        {
+                            // 소수판단.
+                            // 소수라면 dict = true
+                            // 소수가 아니라면 dict = false
+                            bool sosu = true;
+                            for(int x = 2; x * x <= num; x++)
+                            {
+                                if(num % x == 0)
+                                {
+                                    // 소수가 아님.
+                                    sosu = false;
+                                    break;
+                                }
+                            }
+                            if(sosu)
+                            {
+                                numDict[num] = true;
+                                answer++;
+                            }
+                            else
+                            {
+                                numDict[num] = false;
+                            }
+                        }
+                    }
+                }
             }
-
-            int maxInt = p1;
-            if(p2 > maxInt)
-            {
-                maxInt = p2;
-            }
-            if(p3 > maxInt)
-            {
-                maxInt = p3;
-            }
-
-            int length = 0;
-            if (p1 == maxInt)
-                length++;
-            if (p2 == maxInt)
-                length++;
-            if (p3 == maxInt)
-                length++;
-
-            int[] answer = new int[length];
-
-            int index = 0;
-            if (p1 == maxInt)
-                answer[index++] = 1;
-            if (p2 == maxInt)
-                answer[index++] = 2;
-            if (p3 == maxInt)
-                answer[index++] = 3;
-
-
             return answer;
         }
 
