@@ -101,7 +101,7 @@ namespace AlgorithmKata
      */
 
     /* 2023.09.19
-    
+    덧칠하기
      */
 
     internal class Program
@@ -1551,7 +1551,6 @@ namespace AlgorithmKata
         */
 
         // 덧칠하기
-        // 아직 안됨
         public static int solution(int n, int m, int[] section)
         {
             int answer = 0;
