@@ -97,7 +97,11 @@ namespace AlgorithmKata
      */
 
     /* 2023.09.15
-    모의고사
+    소수 만들기
+     */
+
+    /* 2023.09.19
+    
      */
 
     internal class Program
@@ -1424,7 +1428,66 @@ namespace AlgorithmKata
         }
         */
 
+        // 소수 만들기
+        /*
+        public int solution(int[] nums)
+        {
+            int answer = 0;
 
+            // 배열에서 3개를 더한 수.
+            // 약수를 구함.
+            // if 소수라면?
+            // dic에 수를 키로하고 bool값으로 true
+
+            Dictionary<int, bool> numDict = new Dictionary<int, bool>();
+            int num = 0;
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                for (int j = i + 1; j < nums.Length; j++)
+                {
+                    for (int k = j + 1; k < nums.Length; k++)
+                    {
+                        num = nums[i] + nums[j] + nums[k];
+
+                        if (numDict.ContainsKey(num))
+                        {
+                            if (numDict[num])
+                            {
+                                answer++;
+                            }
+                        }
+                        else
+                        {
+                            // 소수판단.
+                            // 소수라면 dict = true
+                            // 소수가 아니라면 dict = false
+                            bool sosu = true;
+                            for (int x = 2; x * x <= num; x++)
+                            {
+                                if (num % x == 0)
+                                {
+                                    // 소수가 아님.
+                                    sosu = false;
+                                    break;
+                                }
+                            }
+                            if (sosu)
+                            {
+                                numDict[num] = true;
+                                answer++;
+                            }
+                            else
+                            {
+                                numDict[num] = false;
+                            }
+                        }
+                    }
+                }
+            }
+            return answer;
+        }
+        */
 
 
 
@@ -1487,72 +1550,46 @@ namespace AlgorithmKata
         }
         */
 
-        // 소수 만들기
-        public int solution(int[] nums)
+        // 덧칠하기
+        // 아직 안됨
+        public static int solution(int n, int m, int[] section)
         {
             int answer = 0;
 
-            // 배열에서 3개를 더한 수.
-            // 약수를 구함.
-            // if 소수라면?
-            // dic에 수를 키로하고 bool값으로 true
-            
-            Dictionary<int, bool> numDict = new Dictionary<int, bool>();
-            int num = 0;
+            int j = 0;
 
-            for(int i = 0; i < nums.Length; i++)
+            for(int i = 0; i < n; i++)
             {
-                for (int j = i + 1; j < nums.Length; j++)
-                {
-                    for (int k = j + 1; k < nums.Length; k++)
-                    {
-                        num = nums[i] + nums[j] + nums[k];
+                Console.WriteLine(i);
 
-                        if(numDict.ContainsKey(num))
+                if (section[j] - 1 == i)
+                {
+                    answer++;
+                    i += m - 1;
+
+                    for(int k = j+1; k < section.Length; k++)
+                    {
+                        // 여기서 범위 설정 잘못해서 30분 날림... (-1이 빠졌었음.)
+                        if (section[k] - 1 >= i)
                         {
-                            if (numDict[num])
-                            {
-                                answer++;
-                            }
-                        }
-                        else
-                        {
-                            // 소수판단.
-                            // 소수라면 dict = true
-                            // 소수가 아니라면 dict = false
-                            bool sosu = true;
-                            for(int x = 2; x * x <= num; x++)
-                            {
-                                if(num % x == 0)
-                                {
-                                    // 소수가 아님.
-                                    sosu = false;
-                                    break;
-                                }
-                            }
-                            if(sosu)
-                            {
-                                numDict[num] = true;
-                                answer++;
-                            }
-                            else
-                            {
-                                numDict[num] = false;
-                            }
+                            j = k;
+                            break;
                         }
                     }
                 }
             }
             return answer;
         }
+        
 
+        // 
 
 
 
 
         static void Main(string[] args)
         {
-            string answer = solution(5,24);
+            int answer = solution(5, 2, new int[3] { 1, 4, 5 });
             Console.WriteLine($"{answer}");
 
             //for(int i = 0; i < answer.Length; i++)
