@@ -1489,6 +1489,42 @@ namespace AlgorithmKata
         }
         */
 
+        // 덧칠하기
+        /*
+        public static int solution(int n, int m, int[] section)
+        {
+            int answer = 0;
+
+            int j = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                Console.WriteLine(i);
+
+                if (section[j] - 1 == i)
+                {
+                    answer++;
+                    i += m - 1;
+
+                    for (int k = j + 1; k < section.Length; k++)
+                    {
+                        // 여기서 범위 설정 잘못해서 30분 날림... (-1이 빠졌었음.)
+                        if (section[k] - 1 >= i)
+                        {
+                            j = k;
+                            break;
+                        }
+                    }
+                }
+            }
+            return answer;
+        }
+        */
+
+
+
+
+
 
 
         #endregion
@@ -1550,45 +1586,51 @@ namespace AlgorithmKata
         }
         */
 
-        // 덧칠하기
-        public static int solution(int n, int m, int[] section)
+
+        // 기사단원의 무기
+        public static int solution(int number, int limit, int power)
         {
             int answer = 0;
 
-            int j = 0;
-
-            for(int i = 0; i < n; i++)
+            if(number == 1)
             {
-                Console.WriteLine(i);
-
-                if (section[j] - 1 == i)
-                {
-                    answer++;
-                    i += m - 1;
-
-                    for(int k = j+1; k < section.Length; k++)
-                    {
-                        // 여기서 범위 설정 잘못해서 30분 날림... (-1이 빠졌었음.)
-                        if (section[k] - 1 >= i)
-                        {
-                            j = k;
-                            break;
-                        }
-                    }
-                }
+                return 1;
             }
+
+            int count = 0;
+            for (int i = 2; i <= number; i++)
+            {
+                count = 0;
+                for(int j = 1; j * j <= i; j++)
+                {
+                    if (i % j == 0)
+                        count++;
+                }
+
+                if (i % (Math.Sqrt(i)) == 0)
+                    count = (count * 2) - 1;
+                else
+                    count = count * 2;
+
+                
+
+                if (count > limit)
+                    answer += power;
+                else
+                    answer += count;
+            }
+            answer++;
+
             return answer;
         }
-        
 
-        // 
 
 
 
 
         static void Main(string[] args)
         {
-            int answer = solution(5, 2, new int[3] { 1, 4, 5 });
+            int answer = solution(5, 3, 2);
             Console.WriteLine($"{answer}");
 
             //for(int i = 0; i < answer.Length; i++)
