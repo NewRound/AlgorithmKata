@@ -104,6 +104,10 @@ namespace AlgorithmKata
     덧칠하기
      */
 
+    /* 2023.10.02
+    기사단원의 무기
+     */
+
     internal class Program
     {
         // 이전 풀이
