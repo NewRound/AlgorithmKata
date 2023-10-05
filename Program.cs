@@ -108,6 +108,11 @@ namespace AlgorithmKata
     기사단원의 무기
      */
 
+    /* 2023.10.04
+    로또의 최고 순위와 최저 순위
+
+     */
+
     internal class Program
     {
         // 이전 풀이
@@ -1525,6 +1530,88 @@ namespace AlgorithmKata
         }
         */
 
+        // 기사단원의 무기
+        /*
+        public static int solution(int number, int limit, int power)
+        {
+            int answer = 0;
+
+            if(number == 1)
+            {
+                return 1;
+            }
+
+            int count = 0;
+            for (int i = 2; i <= number; i++)
+            {
+                count = 0;
+                for(int j = 1; j * j <= i; j++)
+                {
+                    if (i % j == 0)
+                        count++;
+                }
+
+                if (i % (Math.Sqrt(i)) == 0)
+                    count = (count * 2) - 1;
+                else
+                    count = count * 2;
+
+                
+
+                if (count > limit)
+                    answer += power;
+                else
+                    answer += count;
+            }
+            answer++;
+
+            return answer;
+        }
+        */
+
+        // 로또의 최고 순위와 최저 순위
+        /*
+        public int[] solution(int[] lottos, int[] win_nums)
+        {
+            int[] answer = new int[2];
+            int count = 0;
+            int zero = 0;
+
+            // 맞는번호 찾기
+            for (int i = 0; i < lottos.Length; i++)
+            {
+                if (lottos[i] != 0)
+                {
+                    for (int j = 0; j < win_nums.Length; j++)
+                    {
+                        if (win_nums[j] == lottos[i])
+                        {
+                            count++;
+                            break;
+                        }
+                    }
+                }
+                else
+                    zero++;
+            }
+
+            answer[0] = 7 - count - zero;
+
+            if (answer[0] == 7)
+                answer[0] = 6;
+
+            if (count < 2)
+            {
+                answer[1] = 6;
+            }
+            else
+            {
+                answer[1] = 7 - count;
+            }
+
+            return answer;
+        }
+        */
 
 
 
@@ -1590,51 +1677,112 @@ namespace AlgorithmKata
         }
         */
 
-
-        // 기사단원의 무기
-        public static int solution(int number, int limit, int power)
+        // 옹알이 (2)
+        public static int solution(string[] babbling)
         {
+            string[] keyword = new string[4] { "aya", "ye", "woo", "ma"};
             int answer = 0;
+            string lastWord = "   ";
+            bool check = true;
+            int stringCount = 0;
 
-            if(number == 1)
+            for(int i = 0; i < babbling.Length; i++)
             {
-                return 1;
-            }
+                lastWord = "   ";
+                check = true;
+                string word = babbling[i];
 
-            int count = 0;
-            for (int i = 2; i <= number; i++)
-            {
-                count = 0;
-                for(int j = 1; j * j <= i; j++)
+                while(true)
                 {
-                    if (i % j == 0)
-                        count++;
+                    if(word.Length < 2)
+                    {
+                        check = false;
+                        break;
+                    }
+
+                    string splitword = word.Substring(0, 2);
+                    stringCount = 0;
+
+                    if (splitword == lastWord.Substring(0, 2))
+                    {
+                        check = false;
+                        break;
+                    }
+
+                    switch (splitword)
+                    {
+                        case "ay":
+                            if(word.Length < 3)
+                            {
+                                check = false;
+                                break;
+                            }
+
+                            if (word[2] == 'a')
+                            {
+                                stringCount = 3;
+                                lastWord = "aya";
+                            }
+                            else
+                                check = false;
+                            break;
+                        case "ye":
+                            stringCount = 2;
+                            lastWord = "ye";
+                            break;
+                        case "wo":
+                            if (word.Length < 3)
+                            {
+                                check = false;
+                                break;
+                            }
+
+                            if (word[2] == 'o')
+                            {
+                                stringCount = 3;
+                                lastWord = "woo";
+                            }
+                            else
+                                check = false;
+                            break;
+                        case "ma":
+                            stringCount = 2;
+                            lastWord = "ma";
+                            break;
+                        default:
+                            check = false;
+                            break;
+                    }
+
+                    Console.WriteLine($"i : {i},   word : {word},   check : {check}");
+
+                    if (!check)
+                        break;
+
+                    if(word.Length == stringCount)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        word = word.Substring(stringCount, word.Length - stringCount);
+                        Console.WriteLine($"word : {word},   check : {check}");
+                    }
                 }
 
-                if (i % (Math.Sqrt(i)) == 0)
-                    count = (count * 2) - 1;
-                else
-                    count = count * 2;
+                if (check)
+                    answer++;
 
-                
-
-                if (count > limit)
-                    answer += power;
-                else
-                    answer += count;
             }
-            answer++;
 
             return answer;
         }
 
 
 
-
-
         static void Main(string[] args)
         {
-            int answer = solution(5, 3, 2);
+            int answer = solution(new string[] { "ayaye", "uuu", "yeye", "yemawoo", "ayaayaa" });
             Console.WriteLine($"{answer}");
 
             //for(int i = 0; i < answer.Length; i++)
