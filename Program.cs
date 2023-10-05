@@ -110,7 +110,10 @@ namespace AlgorithmKata
 
     /* 2023.10.04
     로또의 최고 순위와 최저 순위
+     */
 
+    /* 2023.10.05
+    옹알이 (2)
      */
 
     internal class Program
