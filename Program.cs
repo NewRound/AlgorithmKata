@@ -1616,6 +1616,109 @@ namespace AlgorithmKata
         }
         */
 
+        // 옹알이 (2)
+        /*
+        public static int solution(string[] babbling)
+        {
+            string[] keyword = new string[4] { "aya", "ye", "woo", "ma" };
+            int answer = 0;
+            string lastWord = "   ";
+            bool check = true;
+            int stringCount = 0;
+
+            for (int i = 0; i < babbling.Length; i++)
+            {
+                lastWord = "   ";
+                check = true;
+                string word = babbling[i];
+
+                while (true)
+                {
+                    if (word.Length < 2)
+                    {
+                        check = false;
+                        break;
+                    }
+
+                    string splitword = word.Substring(0, 2);
+                    stringCount = 0;
+
+                    if (splitword == lastWord.Substring(0, 2))
+                    {
+                        check = false;
+                        break;
+                    }
+
+                    switch (splitword)
+                    {
+                        case "ay":
+                            if (word.Length < 3)
+                            {
+                                check = false;
+                                break;
+                            }
+
+                            if (word[2] == 'a')
+                            {
+                                stringCount = 3;
+                                lastWord = "aya";
+                            }
+                            else
+                                check = false;
+                            break;
+                        case "ye":
+                            stringCount = 2;
+                            lastWord = "ye";
+                            break;
+                        case "wo":
+                            if (word.Length < 3)
+                            {
+                                check = false;
+                                break;
+                            }
+
+                            if (word[2] == 'o')
+                            {
+                                stringCount = 3;
+                                lastWord = "woo";
+                            }
+                            else
+                                check = false;
+                            break;
+                        case "ma":
+                            stringCount = 2;
+                            lastWord = "ma";
+                            break;
+                        default:
+                            check = false;
+                            break;
+                    }
+
+                    Console.WriteLine($"i : {i},   word : {word},   check : {check}");
+
+                    if (!check)
+                        break;
+
+                    if (word.Length == stringCount)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        word = word.Substring(stringCount, word.Length - stringCount);
+                        Console.WriteLine($"word : {word},   check : {check}");
+                    }
+                }
+
+                if (check)
+                    answer++;
+
+            }
+
+            return answer;
+        }
+        */
+
 
 
 
@@ -1680,103 +1783,67 @@ namespace AlgorithmKata
         }
         */
 
-        // 옹알이 (2)
-        public static int solution(string[] babbling)
+
+        // 숫자 짝꿍
+        public static string solution(string X, string Y)
         {
-            string[] keyword = new string[4] { "aya", "ye", "woo", "ma"};
-            int answer = 0;
-            string lastWord = "   ";
-            bool check = true;
-            int stringCount = 0;
+            string answer = "";
 
-            for(int i = 0; i < babbling.Length; i++)
+            Dictionary<int, int> xNum = new Dictionary<int, int>();
+            Dictionary<int, int> yNum = new Dictionary<int, int>();
+
+            List<char> num = new List<char>();
+
+            for(int i = 0; i < X.Length; i++)
             {
-                lastWord = "   ";
-                check = true;
-                string word = babbling[i];
-
-                while(true)
+                if (xNum.ContainsKey((int)X[i]))
                 {
-                    if(word.Length < 2)
-                    {
-                        check = false;
-                        break;
-                    }
-
-                    string splitword = word.Substring(0, 2);
-                    stringCount = 0;
-
-                    if (splitword == lastWord.Substring(0, 2))
-                    {
-                        check = false;
-                        break;
-                    }
-
-                    switch (splitword)
-                    {
-                        case "ay":
-                            if(word.Length < 3)
-                            {
-                                check = false;
-                                break;
-                            }
-
-                            if (word[2] == 'a')
-                            {
-                                stringCount = 3;
-                                lastWord = "aya";
-                            }
-                            else
-                                check = false;
-                            break;
-                        case "ye":
-                            stringCount = 2;
-                            lastWord = "ye";
-                            break;
-                        case "wo":
-                            if (word.Length < 3)
-                            {
-                                check = false;
-                                break;
-                            }
-
-                            if (word[2] == 'o')
-                            {
-                                stringCount = 3;
-                                lastWord = "woo";
-                            }
-                            else
-                                check = false;
-                            break;
-                        case "ma":
-                            stringCount = 2;
-                            lastWord = "ma";
-                            break;
-                        default:
-                            check = false;
-                            break;
-                    }
-
-                    Console.WriteLine($"i : {i},   word : {word},   check : {check}");
-
-                    if (!check)
-                        break;
-
-                    if(word.Length == stringCount)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        word = word.Substring(stringCount, word.Length - stringCount);
-                        Console.WriteLine($"word : {word},   check : {check}");
-                    }
+                    xNum[(int)X[i]] += 1;
                 }
-
-                if (check)
-                    answer++;
-
+                else
+                {
+                    xNum[(int)X[i]] = 1;
+                }
             }
+            for (int i = 0; i < Y.Length; i++)
+            {
+                if (yNum.ContainsKey((int)Y[i]))
+                {
+                    yNum[(int)Y[i]] += 1;
+                }
+                else
+                {
+                    yNum[(int)Y[i]] = 1;
+                }
+            }
+
+            foreach(KeyValuePair<int,int> nums in xNum)
+            {
+                if (!yNum.ContainsKey(nums.Key))
+                    continue;
+
+                for(int i = 0; i < Math.Min(nums.Value, yNum[nums.Key]); i++)
+                {
+                    num.Add((char)nums.Key);
+                }
+            }
+
+            if (num.Count == 0)
+                return "-1";
+
+            num.Sort();
+            num.Reverse();
+
+            for(int i = 0; i < num.Count; i++)
+            {
+                if (num[i] == '0')
+                    continue;
+
+                answer += num[i];
+            }
+
+            if (answer == "")
+                answer = "0";
 
             return answer;
         }
@@ -1785,7 +1852,7 @@ namespace AlgorithmKata
 
         static void Main(string[] args)
         {
-            int answer = solution(new string[] { "ayaye", "uuu", "yeye", "yemawoo", "ayaayaa" });
+            string answer = solution("5525", "1255");
             Console.WriteLine($"{answer}");
 
             //for(int i = 0; i < answer.Length; i++)
