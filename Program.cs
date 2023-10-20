@@ -1783,8 +1783,9 @@ namespace AlgorithmKata
         }
         */
 
-
         // 숫자 짝꿍
+        // 1번 시도 타임 오버
+        /*
         public static string solution(string X, string Y)
         {
             string answer = "";
@@ -1836,8 +1837,8 @@ namespace AlgorithmKata
 
             for(int i = 0; i < num.Count; i++)
             {
-                if (num[i] == '0')
-                    continue;
+                if (num[i] == '0' && answer == "")
+                    break;
 
                 answer += num[i];
             }
@@ -1847,12 +1848,261 @@ namespace AlgorithmKata
 
             return answer;
         }
+        */
+        // 2번 시도 시간 초과
+        /*
+        public static string solution(string X, string Y)
+        {
+            string answer = "";
+
+            List<char> xNum = X.ToList();
+            List<char> yNum = Y.ToList();
+
+            List<char> num = new List<char>();
+
+            xNum.Sort();
+            yNum.Sort();
+
+            int yIndex = 0;
+            for(int i = 0; i < xNum.Count; i++)
+            {
+                if (yIndex >= yNum.Count)
+                    break;
+
+                if ((int)yNum[yIndex] > (int)xNum[i])
+                    continue;
+                else if ((int)yNum[yIndex] < (int)xNum[i])
+                {
+                    i--;
+                    yIndex++;
+                    continue;
+                }
+
+                yIndex++;
+                num.Add(xNum[i]);
+            }
+
+            if (num.Count == 0)
+                return "-1";
+
+
+            num.Reverse();
+
+            for (int i = 0; i < num.Count; i++)
+            {
+                if (num[i] == '0' && answer == "")
+                    break;
+
+                answer += num[i];
+            }
+
+            if (answer == "")
+                answer = "0";
+
+            return answer;
+        }
+        */
+        // 3번 시도 시간 초과
+        /*
+        public static string solution(string X, string Y)
+        {
+            string answer = "";
+
+            List<char> xNum = X.ToList();
+            List<char> yNum = Y.ToList();
+
+            xNum.Sort();
+            xNum.Reverse();
+            yNum.Sort();
+            yNum.Reverse();
+
+            int yIndex = 0;
+            bool zero = false;
+
+            for(int i = 0; i < xNum.Count; i++)
+            {
+                if (yIndex >= yNum.Count)
+                    break;
+
+                if ((int)xNum[i] > (int)yNum[yIndex])
+                {
+                    continue;
+                }
+                else if ((int)xNum[i] < (int)yNum[yIndex])
+                {
+                    i--;
+                    yIndex++;
+                    continue;
+                }
+
+                yIndex++;
+
+                if (xNum[i] != '0')
+                    answer += xNum[i];
+                else if (answer != "")
+                {
+                    zero = true;
+                    answer += xNum[i];
+                }
+                else
+                    zero = true;
+            }
+
+            if (zero && answer == "")
+                answer = "0";
+            else if(answer == "")
+                answer = "-1";
+                
+
+            return answer;
+        }
+        */
+
+
+        // 체육복
+        // 1번 시도 런타임 에러
+        /*
+        public static int solution(int n, int[] lost, int[] reserve)
+        {
+            int answer = 0;
+
+            Dictionary<int, bool[]> dic = new Dictionary<int, bool[]>();
+
+            for(int i = 0; i < n; i++)
+            {
+                dic.Add(i + 1, new bool[2] { false, false });
+            }
+
+            for(int i = 0; i < lost.Length; i++)
+            {
+                bool[] condition = dic[lost[i]];
+                condition[0] = true;
+            }
+
+            for (int i = 0; i < reserve.Length; i++)
+            {
+                bool[] condition = dic[reserve[i]];
+                if (condition[0] == false)
+                    condition[1] = true;
+                else
+                {
+                    condition[0] = false;
+                }
+            }
+
+            for(int i = 1; i <= n; i++)
+            {
+                bool[] condition = dic[i];
+
+                if (condition[0] == false)
+                    answer++;
+                else
+                {
+                    if (i == 1)
+                    {
+                        bool[] backCondition = dic[i + 1];
+                        if (backCondition[1] == true)
+                        {
+                            backCondition[1] = false;
+                            answer++;
+                        }
+                    }
+                    else
+                    {
+                        bool[] forntCondition = dic[i - 1];
+                        bool[] backCondition = dic[i + 1];
+                        if (forntCondition[1] == true)
+                        {
+                            forntCondition[1] = false;
+                            answer++;
+                        }
+                        else if (backCondition[1] == true)
+                        {
+                            backCondition[1] = false;
+                            answer++;
+                        }
+
+                    }
+                }
+            }
+
+            return answer;
+        }
+        */
+
+
+        // 문자열 나누기
+        public static int solution(string s)
+        {
+            int answer = 0;
+
+            string splitS = s;
+
+            int xCount = 0;
+            int nCount = 0;
+
+            char c = ' ';
+
+            while (true)
+            {
+                if(splitS == "")
+                {
+                    break;
+                }
+                else if(splitS.Length == 1)
+                {
+                    answer++;
+                    break;
+                }
+
+                xCount = 0;
+                nCount = 0;
+
+                c = splitS[0];
+
+                for (int i = 0; i < splitS.Length; i++)
+                {
+                    if(c == splitS[i])
+                    {
+                        xCount++;
+                    }
+                    else
+                    {
+                        nCount++;
+                    }
+
+                    if(xCount == nCount)
+                    {
+                        if (i == splitS.Length - 1)
+                            splitS = "";
+                        else
+                        {
+                            splitS = splitS.Substring(xCount + nCount, splitS.Length - xCount -nCount);
+                        }
+                        Console.WriteLine(splitS);
+                        answer++;
+                        break;
+                    }
+                    else if (i == splitS.Length - 1)
+                    {
+                        answer++;
+                        splitS = "";
+                    }
+                }
+            }
+
+            return answer;
+        }
+
+
+
+
 
 
 
         static void Main(string[] args)
         {
-            string answer = solution("5525", "1255");
+            int answer = solution("abracadabra");
             Console.WriteLine($"{answer}");
 
             //for(int i = 0; i < answer.Length; i++)
